@@ -1,1 +1,38 @@
-theme: jekyll-theme-cayman
+title: "Trips and Ticks"
+author: "Miguel Jaques"
+description: "Trying to memorize matplotlib synthax since 2013."
+permalink: /:title/
+lang: "en"
+excerpt_separator: "\n\n\n"
+date_format: "%B %d, %Y"
+
+# Layout
+
+sidebar: true              # show a sidebar instead of the usual header
+show_excerpts: false         # show article excerpts on the home page
+show_related: true           # show the previous and next links after every post
+show_description: true       # show the site description in the sidebar
+show_title: true           # always keep the site title visible
+
+# Styling
+
+dark_header: false           # always keep the header dark
+minimal: false               # use simpler style
+
+# Menu
+
+navigation:
+  - {file: "index.html", title: "Home", icon: home}
+  - {file: "about.html", title: "About", icon: address-card}
+
+external:                    # see http://fontawesome.com/icons
+  - {title: Mail, icon: envelope, url: "mailto:migjaques@gmail.com"}
+  - {title: Github, icon: github, url: "https://github.com/seuqaj114"}
+#  - {title: Subscribe, icon: rss, url: "/feed.xml"}
+
+comments:
+#  disqus_shortname: ""      # see https://disqus.com/
+#  isso_domain: ""           # see https://posativ.org/isso/
+
+plugins:
+ - jekyll-feed
