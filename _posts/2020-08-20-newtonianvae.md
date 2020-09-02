@@ -172,9 +172,10 @@ Building physical constraints into deep learning models has seen increased inter
 I see the NewtonianVAE as a step in the direction of using physical knowledge to simplify robot dynamics representation at the latent level, in order to drastically simplify control of downstream tasks. Of particular interest is the fact that when using a physical latent representation, we can do robust imitation learning using a single demonstration sequence, which is a massive improvement in data efficiency when compared to other methods. 
 
 Interesting future directions (feel free to contact me if you want to tackle any of these :D) include:
-	- Currently the model has to be trained on the scene with the goals already in place. That is, we can't move the colored objects around at test time because that would fall outside of the visual domain seen by the encoder during training. It would greatly increase the generality of this approach if new objects at different locations could be handled at test time;
-	- Allowing for a varying or distracting background, while still correctly modelling the foreground object of interest;
-	- Integrating the NewtonianVAE with an object-centric segmentation approach in order to model multiple objects, possibly interacting with each other.
+
+* Currently the model has to be trained on the scene with the goals already in place. That is, we can't move the colored objects around at test time because that would fall outside of the visual domain seen by the encoder during training. It would greatly increase the generality of this approach if new objects at different locations could be handled at test time;
+* Allowing for a varying or distracting background, while still correctly modelling the foreground object of interest;
+* Integrating the NewtonianVAE with an object-centric segmentation approach in order to model multiple objects, possibly interacting with each other.
 
 For questions email me at <small>m dot a dot m dot jaques at sms.ed.ac.uk</small>.
 
