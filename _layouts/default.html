@@ -35,8 +35,8 @@
 
 <header class="icons">
   {% unless site.show_title != true and site.navigation and site.external %}
-    <a href="{{ "/" | relative_url }}" class="title">{{ site.author | escape }}</a>
-    <p class="title">{{ site.title | escape }}</p>
+    <b><a class="title" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a></b>
+    <p><a href="{{ '/about' | relative_url }}">{{ site.author | escape }}</a></p>
   {% endunless %}
   {% if site.navigation or site.external %}
     {% include menu.html menu=site.navigation icons=false %}

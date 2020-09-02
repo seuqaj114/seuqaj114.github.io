@@ -17,7 +17,7 @@ So what is a __proportional (or P-) controller__? Let's imagine a very simple sy
 
 If the ball is initially at a position $x_0$ and we want to move it towards a goal position $x^{\text{goal}}$, a simple way to achieve this is by applying, at each time $t$, a force of the form $F_t = c \cdot (x^{\text{goal}} - x_t)$, starting at $t=0$, with some constant $c$. It should be easy to see that this force is a vector that points from the current position to the goal position, so the ball will move towards the goal. This right here is a proportional controller! 
 
-Obviously if is the constant $c$ is too high the ball will overshoot the goal (blow dried at max power), and if c is too low, the ball will move very slowly towards the goal (if you're trying to push a bowling ball with a blow drier). There are [heuristics](https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method) to tune $c$, but that's out of the scope of this post.  
+If the constant $c$ is too high the ball will overshoot the goal (blow dried at max power), and if c is too low, the ball will move very slowly towards the goal (if you're trying to push a bowling ball with a blow drier). There are [heuristics](https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method) to tune $c$, but that's out of the scope of this post.  
 
 -------------------
 
@@ -31,7 +31,7 @@ The disadvantage of this approach is that it is computationally expensive and re
 
 How do existing variational models behave under a proportional controller? 
 
-As a starting point for our investigation, we trained an [E2C](https://arxiv.org/abs/1506.07365) model on random transitions from a simulated 2D actuated ball moving in the horizontal plane. The E2C model learns a locally linear transition model and is known for finding interpretable state representations (i.e. it learns state dimensions corresponding to the position and velocity variables), and it was one of the first deep variational models that built additional structure into the transition function in order to learn better state representations. Having trained the model, we apply actions of the form 
+As a starting point for our investigation, we trained an [E2C](https://arxiv.org/abs/1506.07365) model on random transitions from a simulated 2D actuated ball moving in the horizontal plane. The E2C model learns a locally linear transition model and is known for finding interpretable state representations (i.e. it learns state dimensions corresponding to the position and velocity variables). It was one of the first deep variational models that built additional structure into the transition function in order to learn better state representations. Having trained the model, we apply actions of the form 
 
 $$a_t \propto (x^{\text{goal}} - x_t)$$
 
@@ -41,11 +41,11 @@ $$a_t \propto (x^{\text{goal}} - x_t)$$
 ![e2c-trajectory](/assets/figures/newtonianvae/pointmass_e2c_example_path.png){:width="30%"}
 {: refdef}
 
-We can see that applying a force in the direction of the goal state does not move the ball towards the goal state! After some thought, we realized that this is because E2C learns a transition model that is too unconstrained to perform proportional control, since its transition model has the form:
+We can see that applying a force in the direction of the goal state does not move the ball towards the goal state! After some thought, we realized that this is because the transition model of E2C
 
 $$ x_{t+1} = A x_t + B a_t $$
 
-In the next section we will figure out what constraints to impose on $A$, $B$ and $C$ in order to allow proportional control. We will need to formulate a transition model that more accurately describes the newtonian relationship between position, velocity and force.
+is too unconstrained to perform proportional control. In the next section we will figure out what constraints to impose on $A$, $B$ and $C$ in order to allow proportional control. We will need to formulate a transition model that more accurately describes the newtonian relationship between position, velocity and force.
 
 One additional problem with most variational models (like [E2C](https://arxiv.org/abs/1506.07365), [DVBF](https://arxiv.org/abs/1605.06432) or [DKF](https://arxiv.org/abs/1511.05121)) is that they don't have explicit position and velocity latent variables by construction. Typically a latent vector z is learned which ends up containing x and v in it, but identifying which dimensions of z corresponds to which is has to be made post-training, which is impractical.  
 

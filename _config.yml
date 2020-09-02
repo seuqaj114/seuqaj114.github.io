@@ -25,11 +25,12 @@ mathjax: true
 
 navigation:
   - {file: "index.html", title: "Home", icon: home}
-  - {file: "about.html", title: "About", icon: address-card}
+  - {file: "about.html", title: "About", icon: address-card, url: "/about"}
 
 external:                    # see http://fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:migjaques@gmail.com"}
   - {title: Github, icon: github, url: "https://github.com/seuqaj114"}
+  - {title: Twitter, icon: twitter, url: "https://twitter.com/migJaques"}
 #  - {title: Subscribe, icon: rss, url: "/feed.xml"}
 
 comments:
