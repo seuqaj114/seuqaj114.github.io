@@ -13,11 +13,11 @@ This blog post will explain the ideas behind my most recent [paper](https://arxi
 Before diving into the paper itself, I will quickly explain the concept of PID control for those of you who are not familiar with this area.
 
 PID stands for Proportional-Integral-Derivative, which is a mouthful... Let's ignore the I and D terms, and focus just on P, as it is the most important one. 
-So what is a __proportional (or P-) controller__? Let's imagine a very simple system like a ball rolling on a horizontal table, to which we can apply a force along the horizontal plane (for example, by pushing it with a blow drier). This sistem is described by the 2D position of the ball $x$ and the action is the force applied along this plane, $F$. 
+So what is a __proportional (or P-) controller__? Let's imagine a very simple system like a ball rolling on a horizontal table, to which we can apply a force along the horizontal plane (for example, by pushing it with a blow dryer). This system is described by the 2D position of the ball $x$ and the action is the force applied along this plane, $F$. 
 
 If the ball is initially at a position $x_0$ and we want to move it towards a goal position $x^{\text{goal}}$, a simple way to achieve this is by applying, at each time $t$, a force of the form $F_t = c \cdot (x^{\text{goal}} - x_t)$, starting at $t=0$, with some constant $c$. It should be easy to see that this force is a vector that points from the current position to the goal position, so the ball will move towards the goal. This right here is a proportional controller! 
 
-If the constant $c$ is too high the ball will overshoot the goal (blow dried at max power), and if c is too low, the ball will move very slowly towards the goal (if you're trying to push a bowling ball with a blow drier). There are [heuristics](https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method) to tune $c$, but that's out of the scope of this post.  
+If the constant $c$ is too high the ball will overshoot the goal (blow dried at max power), and if c is too low, the ball will move very slowly towards the goal (if you're trying to push a bowling ball with a blow dryer). There are [heuristics](https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method) to tune $c$, but that's out of the scope of this post.  
 
 -------------------
 
@@ -91,7 +91,7 @@ Notice that we simply built a discrete form of into the transition model (3). Ho
 1. diagonal matrices $A$, $B$ and $C$;
 2. non-negative $C$.
 
-Diagonality encourages correct coordinate relations between $u$, $x$ and $v$, since linear combinations of dimensions are eliminated. Using non-negative $C$ is key to obtain a correct directional relation between the actions and the states (suppose $C$ is negative; now if you pointed the blow the drier towards the goal the ball would move backwards!). We use strictly negative B to provide a correct interpretation of the v term as friction, which adds trajectory stability.
+Diagonality encourages correct coordinate relations between $u$, $x$ and $v$, since linear combinations of dimensions are eliminated. Using non-negative $C$ is key to obtain a correct directional relation between the actions and the states (suppose $C$ is negative; now if you pointed the blow the dryer towards the goal the ball would move backwards!). We use strictly negative B to provide a correct interpretation of the v term as friction, which adds trajectory stability.
 
 We train all the components end-to-end on a dataset of random transitions by minimizing the lower bound on the marginal likelihood (ELBO):
 
