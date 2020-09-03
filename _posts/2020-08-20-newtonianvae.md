@@ -76,7 +76,7 @@ where we write the transition prior in the locally linear form:
 
 $$ 
 \begin{aligned} 
-p(x_t|x_{t-1}, u_{t-1}; v_t) &= N(x_t|x_{t-1} + \Delta t \cdot v_t, \sigma^2) \\
+p(x_t|x_{t-1}, u_{t-1}; v_t) &= \mathcal{N}(x_t|x_{t-1} + \Delta t \cdot v_t, \sigma^2) \\
 v_t &= v_{t-1} + \Delta t \cdot (A x_{t-1} + B v_{t-1} + C u_{t-1})
 \end{aligned} 
 $$
